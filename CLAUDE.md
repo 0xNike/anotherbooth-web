@@ -6,15 +6,15 @@
 
 ## What Is Another Booth?
 
-Another Booth (アナザーブース) is a commercial multi-room immersive photobooth business at **Orchard Plaza #05-50, 150 Orchard Road, Singapore**. Groups of 2–4 move sequentially through four themed photobooth rooms, then select and print photo strips in a foyer. Appointment-based, operating 10AM–3AM daily.
+Another Booth (アナザーブース) is a commercial multi-room immersive photobooth business on **Level 5 of Orchard Plaza — #05-50, 150 Orchard Road, Singapore**. Groups of 2–4 move sequentially through four themed photobooth rooms, then select and print photo strips in a foyer. **Walk-in — no appointment needed**; open 10AM–3AM daily.
 
-The brand identity is **underground, editorial, moody** — paparazzi flash energy, Gentle Monster vibes, Japanese cultural themes. Think dark luxury meets street editorial.
+The brand identity is **editorial, moody, dark-luxe** — paparazzi flash energy, Gentle Monster vibes, Japanese cultural themes. Think dark luxury meets street editorial. (Note: the venue is on the **fifth floor**, not a basement — never describe it as "underground"; that reads as a literal location claim and is wrong.)
 
 ---
 
 ## What Are We Building?
 
-A **single-page marketing website** at `anotherbooth.sg` (or equivalent domain). The sole purpose is **brand awareness and social proof** — not bookings, not e-commerce. There is no booking flow on this site. The CTA buttons should link to an external booking URL (TBD — use `#book` as placeholder href for now).
+A small **marketing website** at `anotherbooth.sg` (or equivalent domain) — a home page plus **`/about` and `/contact`** routes. The sole purpose is **brand awareness and social proof** — not bookings, not e-commerce. The venue is **walk-in (no booking at all)**, so the site has no reservation flow. The single call-to-action is **"Follow us on Instagram"** (TBD — use `#` placeholder href until the real profile URL is provided).
 
 This is NOT the photobooth software (that's a separate Python/FastAPI system for the in-venue tablets and PC). This is a standalone public-facing website.
 
@@ -22,7 +22,7 @@ This is NOT the photobooth software (that's a separate Python/FastAPI system for
 
 ## Design Direction: Metallic Black / Silver / Gen Z
 
-The aesthetic is **dark chrome luxury meets underground editorial**. A reference HTML file exists at `another-booth-landing.html` in this repo — it is the design prototype and source of truth for the visual language.
+The aesthetic is **dark chrome luxury meets street editorial**. A reference HTML file exists at `another-booth-landing.html` in this repo — it is the design prototype and source of truth for the visual language.
 
 ### Color System
 
@@ -58,7 +58,7 @@ Do NOT use: Inter, Roboto, Arial, system fonts, or any generic sans-serif.
 - **Shimmer lines** — horizontal lines with shimmer animation across hero
 - **Scroll-triggered reveals** — elements fade up (translateY 30px → 0, opacity 0 → 1) with staggered delays
 - **Glassmorphism nav** — backdrop-filter blur, semi-transparent black background
-- **Hover states** — amber border/glow transitions on CTAs, slide-in amber fill on Book Now button
+- **Hover states** — border/glow transitions on CTAs, slide-in fill on buttons
 - No emojis. No rounded-corner card carousels. No gradients-on-white. No startup landing page energy.
 
 ### Layout Principles
@@ -77,15 +77,15 @@ Do NOT use: Inter, Roboto, Arial, system fonts, or any generic sans-serif.
 The page has these sections in order:
 
 ### 1. Navigation (fixed)
-- Logo: `ANOTHER BOOTH` in Space Mono + `アナザーブース` in Noto Sans JP
-- Links: Rooms, Experience, Location (anchor scroll)
-- CTA: "Book Now" button (links to external booking — placeholder `#book`)
+- Logo: the official `anotherbooth` wordmark (white-on-transparent SVG)
+- Links: About (`/about`), Experience (`/#experience` — the flow section on home), Contact (`/contact`)
+- No CTA button in the nav (booking removed)
+- The logo lives in a separate pinned bar above the hero; the menu band is links-only, centered, dark-grey (`--nav-bg`), and shared across all pages (it sits below the hero on home, at the top of sub-pages)
 
 ### 2. Hero
-- Tagline: "Singapore's Underground Photobooth Experience"
-- Title: `ANOTHER` (chrome gradient) / `BOOTH` (animated amber-chrome gradient)
-- Subtitle: `アナザーブース`
-- CTA: "Enter the Experience →"
+- Tagline: "Singapore's Immersive Photobooth Experience"
+- Centerpiece: the official `anotherbooth` logo lockup (wordmark + アナザーブース), white-on-transparent SVG
+- No CTA button — the scroll cue invites entry; the only CTA is "Follow us on Instagram" in the final section
 - Scroll indicator at bottom
 
 ### 3. Rooms Section ("01 — The Rooms")
@@ -103,7 +103,7 @@ Each card has: atmospheric gradient background matching room vibe, ghost kanji (
 
 ### 4. How It Works ("02 — The Flow")
 - 4 steps: Arrive → Shoot → Select → Print
-- Step 01 — Arrive: "Book your slot. Show up at Orchard Plaza. Drop your bags in the vanity room."
+- Step 01 — Arrive: "No booking needed. Walk in at Orchard Plaza, Level 5. Drop your bags in the vanity room."
 - Step 02 — Shoot: "Move through four themed rooms. Tap, pose, flash. Every room hits different."
 - Step 03 — Select: "Browse your shots in the foyer. Pick your favourites for the strip."
 - Step 04 — Print: "Walk out with physical photo strips. The kind you actually keep."
@@ -113,11 +113,11 @@ Each card has: atmospheric gradient background matching room vibe, ghost kanji (
 - `2–4` Guests per Session
 - `10am` to 3am Daily
 
-### 6. Final CTA
-- Location label: "Orchard Plaza #05-50"
+### 6. Final CTA (`#visit`)
+- Location label: "Orchard Plaza · Level 5 · #05-50"
 - Title: "Ready to step inside?"
-- Address: "150 Orchard Road, Singapore"
-- CTA: "Book Your Session →"
+- Address: "150 Orchard Road, Singapore · Walk in any time"
+- CTA: "Follow us on Instagram →" (links to the Instagram profile — placeholder `#`)
 
 ### 7. Footer
 - © 2026 Another Booth
@@ -146,8 +146,8 @@ Choose the appropriate modern stack. Recommendations:
 
 ### SEO
 
-- Title: `Another Booth — アナザーブース | Singapore's Underground Photobooth Experience`
-- Meta description: `Four themed rooms. One continuous photobooth journey. Book your session at Orchard Plaza, Singapore.`
+- Title: `Another Booth — アナザーブース | Singapore's Immersive Photobooth Experience`
+- Meta description: `Four themed rooms. One continuous photobooth journey. Find us on Level 5 of Orchard Plaza, Singapore — walk in any time.`
 - Open Graph image: TBD (will be provided — use a placeholder 1200×630 for now)
 - Canonical URL: TBD
 - Schema.org LocalBusiness structured data for the Orchard Plaza location
@@ -167,8 +167,8 @@ These will be provided later. Use placeholders for now:
 - Room photography (real photos of the four rooms — currently rooms are not built yet)
 - Open Graph / social share image
 - Favicon / app icons
-- External booking URL
-- Social media profile URLs
+- Instagram profile URL (the site's only CTA)
+- Other social media profile URLs (TikTok, X)
 - Google Maps embed or link for location
 
 ---
@@ -189,9 +189,9 @@ For context if you need to write copy or choose atmospheric treatments:
 
 ## What NOT to Build
 
-- No booking/reservation system — this is handled externally
+- No booking/reservation system — the venue is walk-in, no reservations at all
 - No user accounts or authentication
-- No gallery/portfolio page (single page only)
+- No gallery/portfolio page (home + About + Contact only — no other routes)
 - No blog or CMS
 - No pricing page — pricing is communicated at booking
 - No chat widget or contact form
@@ -251,9 +251,10 @@ anotherbooth-web/
 
 - **Name**: Another Booth (not "Another Room")
 - **Katakana**: アナザーブース
-- **Location**: Orchard Plaza #05-50, 150 Orchard Road, Singapore
+- **Location**: Orchard Plaza, Level 5, #05-50, 150 Orchard Road, Singapore (fifth floor — not underground)
 - **Hours**: 10AM–3AM daily
+- **Entry**: Walk-in, no booking/appointment
 - **Capacity**: 2–4 guests per session
 - **Rooms**: 4 themed photobooth rooms + 1 vanity/utility room
-- **Aesthetic**: Underground editorial, moody, Japanese-inflected, paparazzi flash energy
+- **Aesthetic**: Editorial, moody, dark-luxe, Japanese-inflected, paparazzi flash energy
 - **Website tone**: Confident, minimal copy, no exclamation marks, no "fun for the whole family" energy. Speak like a fashion brand, not a tourist attraction.

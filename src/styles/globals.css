@@ -11,8 +11,6 @@
   --color-chrome-4: #4a4a4a; /* labels, hints, faintest text  */
   --color-black: #0a0a0a; /* card / section backgrounds       */
   --color-deep-black: #050505; /* page background               */
-  --color-amber: #d4a04a; /* legacy warm accent (mostly retired) */
-  --color-amber-dim: #a07830; /* amber secondary                */
   --color-white: #f0f0f0; /* hero text, maximum emphasis       */
 
   /* Brand accent palette — the rainbow "booth" from the logo. Blue is the
@@ -42,8 +40,6 @@
   --chrome-4: var(--color-chrome-4);
   --black: var(--color-black);
   --deep-black: var(--color-deep-black);
-  --amber: var(--color-amber);
-  --amber-dim: var(--color-amber-dim);
   --white: var(--color-white);
 
   --red: var(--color-red);
@@ -64,6 +60,14 @@
     var(--blue) 100%
   );
 
+  /* Pinned-header heights — the logo bar sits at the top, the menu band
+     sticks directly beneath it; these keep `top` + scroll offsets in sync. */
+  --logobar-h: 52px;
+  --navbar-h: 60px;
+  /* Menu band fill — dark grey (clearly not the page's near-black) so the
+     bar reads against the content scrolling under it. */
+  --nav-bg: #1c1c1c;
+
   --grain-opacity: 0.04;
 }
 
@@ -75,6 +79,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Only the logo bar is pinned now (the menu band scrolls away with the
+     page), so anchor jumps just need to clear the logo bar. */
+  scroll-padding-top: calc(var(--logobar-h) + 20px);
   scrollbar-width: thin;
   scrollbar-color: var(--chrome-3) var(--black);
 }
@@ -126,32 +133,22 @@ body {
   z-index: 9999;
 }
 
-/* ─── Navigation ──────────────────────────────────────────────────── */
+/* ─── Navigation ──────────────────────────────────────────────────────
+   Sticky, not fixed: the nav lives in flow right after the hero, so it
+   only appears once you scroll past the hero, then pins to the top for
+   the rest of the page (until the footer scrolls it away). */
 nav {
-  position: fixed;
-  top: 0;
+  /* Static band in flow below the hero — it scrolls away with the page;
+     only the logo bar stays pinned at the top. */
   width: 100%;
-  z-index: 100;
-  padding: 20px 40px;
+  height: var(--navbar-h);
+  padding: 0 40px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  backdrop-filter: blur(20px);
-  background: rgba(5, 5, 5, 0.6);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  transition: all 0.4s ease;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.logo img {
-  height: 24px;
-  width: auto;
-  display: block;
+  background: var(--nav-bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .nav-links {
@@ -189,46 +186,37 @@ nav {
   width: 100%;
 }
 
-.book-btn {
-  background: transparent;
-  border: 1px solid var(--chrome-3);
-  color: var(--chrome-1);
-  padding: 10px 24px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
+/* Logo bar — pinned to the top of the page on every breakpoint, above the
+   hero. The logo lives here; the nav below carries links only. */
+.logo-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--logobar-h);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  background: rgba(5, 5, 5, 0.6);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.book-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--rainbow);
-  transform: translateX(-101%);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.book-btn:hover {
-  border-color: transparent;
-  color: var(--black);
-}
-.book-btn:hover::before {
-  transform: translateX(0);
-}
-.book-btn span {
-  position: relative;
-  z-index: 1;
+.logo-bar img {
+  height: 22px;
+  width: auto;
+  display: block;
 }
 
 /* ─── Hero ────────────────────────────────────────────────────────── */
 .hero {
-  height: 100vh;
+  /* svh tracks the *small* viewport (mobile address bar visible) so the
+     centred content + scroll hint never sit behind the browser chrome.
+     The 100vh line is the fallback for browsers without dynamic-vh units. */
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -340,70 +328,6 @@ nav {
   height: auto;
   display: block;
   filter: drop-shadow(0 0 60px rgba(200, 200, 200, 0.08));
-}
-
-.hero-title {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(60px, 12vw, 160px);
-  line-height: 0.9;
-  letter-spacing: -4px;
-  text-transform: uppercase;
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #d0d0d0 25%,
-    #909090 50%,
-    #606060 75%,
-    #404040 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 0 60px rgba(200, 200, 200, 0.08));
-  animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
-}
-
-.hero-title .booth {
-  display: block;
-  background: linear-gradient(
-    90deg,
-    var(--amber) 0%,
-    #e8c878 30%,
-    var(--chrome-1) 50%,
-    #e8c878 70%,
-    var(--amber) 100%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both,
-    chromeShift 6s ease-in-out infinite;
-}
-
-@keyframes chromeShift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.hero-subtitle {
-  font-family: var(--font-jp);
-  font-size: clamp(16px, 2.5vw, 24px);
-  color: var(--chrome-3);
-  margin-top: 24px;
-  letter-spacing: 8px;
-  animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
-}
-
-.hero-cta {
-  margin-top: 48px;
-  animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
 }
 
 .cta-main {
@@ -853,6 +777,69 @@ footer {
   color: var(--blue);
 }
 
+/* ─── Sub-pages (About / Contact) ─────────────────────────────────────
+   No hero, so push content below the fixed logo bar and keep the page tall
+   enough that the footer stays at the bottom. */
+.page {
+  min-height: 100svh;
+  padding-top: var(--logobar-h);
+}
+
+.page-body {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Opening line — larger than body copy. Kept outside .prose so it isn't
+   overridden by the more specific `.prose p` rule. */
+.lede {
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.6;
+  color: var(--chrome-1);
+  margin-bottom: 32px;
+  max-width: 60ch;
+}
+
+.prose p {
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.85;
+  color: var(--chrome-2);
+  margin-bottom: 22px;
+  max-width: 62ch;
+}
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* Contact details */
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin: 8px 0 48px;
+}
+
+.contact-row dt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--chrome-4);
+  margin-bottom: 8px;
+}
+
+.contact-row dd {
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.5;
+  color: var(--chrome-1);
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
 /* ─── Cursor glow ─────────────────────────────────────────────────── */
 .cursor-glow {
   position: fixed;
@@ -884,11 +871,17 @@ footer {
 
 /* ─── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 768px) {
+  /* Tighter padding + link spacing for the menu band on small screens
+     (the pinned logo bar and links-only band are now the base layout). */
   nav {
-    padding: 16px 20px;
+    padding: 0 20px;
   }
   .nav-links {
-    display: none;
+    gap: 24px;
+  }
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 1.5px;
   }
   .section {
     padding: 80px 20px;
@@ -904,13 +897,40 @@ footer {
     gap: 40px;
     padding: 60px 20px;
   }
-  .hero-title {
-    letter-spacing: -2px;
-  }
   footer {
     flex-direction: column;
     gap: 20px;
     text-align: center;
+  }
+
+  /* Wide mono tracking that reads as luxe on desktop overflows a phone's
+     width — pull it in so labels wrap cleanly instead of being clipped by
+     the page's overflow-x: hidden. */
+  .hero-tag {
+    letter-spacing: 4px;
+  }
+  .final-location {
+    letter-spacing: 3px;
+  }
+  .step {
+    padding: 40px 24px;
+  }
+
+  /* The CTA pill is the widest fixed element; let it shrink to the
+     viewport and centre-wrap rather than run off-screen. */
+  .cta-main {
+    max-width: 100%;
+    padding: 16px 28px;
+    letter-spacing: 3px;
+    text-align: center;
+  }
+
+  /* Roomier tap targets for the footer's small mono links. */
+  .footer-social {
+    gap: 20px;
+  }
+  .footer-social a {
+    padding: 6px 4px;
   }
 }
 
@@ -920,6 +940,26 @@ footer {
   }
   .steps {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Touch / no-hover devices ─────────────────────────────────────────
+   The room cards reveal their name + description on :hover, and tap-to-
+   focus (:focus-within) is non-obvious — so on phones the cards read as
+   bare colour fields with the copy slid off the bottom edge. Where the
+   device can't hover, surface every card's content and description by
+   default. (Wired up to hover, not width, so a touchscreen laptop counts.) */
+@media (hover: none) {
+  .room-card-content {
+    transform: none;
+  }
+  .room-desc {
+    opacity: 1;
+  }
+  /* A tap leaves :hover stuck on the pill until the next tap; don't let it
+     hang in the lifted state. */
+  .cta-main:hover {
+    transform: none;
   }
 }
 

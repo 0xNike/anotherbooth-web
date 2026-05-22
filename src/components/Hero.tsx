@@ -22,14 +22,6 @@ export default function Hero() {
             fetchPriority="high"
           />
         </h1>
-        <div className="hero-cta">
-          <a href={BRAND.bookingUrl} className="cta-main">
-            Enter the Experience{" "}
-            <span className="cta-arrow" aria-hidden="true">
-              →
-            </span>
-          </a>
-        </div>
       </div>
 
       <div className="scroll-hint" aria-hidden="true">

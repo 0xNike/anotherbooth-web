@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 /** Adds the `visible` class to every `.reveal` element as it scrolls into
- *  view, with a small stagger — mirrors the prototype's IntersectionObserver.
- *  Renders nothing; it just wires up the behaviour on mount. */
+ *  view, with a small stagger. Lives in the root layout, so it re-scans on
+ *  every route change (the `.reveal` set differs per page). Renders nothing. */
 export default function ScrollReveal() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const els = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
     if (els.length === 0) return;
@@ -37,7 +40,7 @@ export default function ScrollReveal() {
 
     els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   return null;
 }

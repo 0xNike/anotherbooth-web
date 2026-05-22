@@ -1,29 +1,18 @@
-import { BRAND, LOGO, NAV_LINKS } from "@/lib/constants";
+import Link from "next/link";
+import { NAV_LINKS } from "@/lib/constants";
 
+/** The menu band — links only, centered. Static band in flow (below the
+ *  hero on home; at the top of sub-pages). */
 export default function Nav() {
   return (
     <nav aria-label="Primary">
-      <a className="logo" href="#main" aria-label={`${BRAND.name} — home`}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={LOGO.wordmark}
-          alt={`${BRAND.name} — ${BRAND.katakana}`}
-          width={743}
-          height={101}
-        />
-      </a>
-
       <ul className="nav-links">
         {NAV_LINKS.map((link) => (
           <li key={link.href}>
-            <a href={link.href}>{link.label}</a>
+            <Link href={link.href}>{link.label}</Link>
           </li>
         ))}
       </ul>
-
-      <a className="book-btn" href={BRAND.bookingUrl}>
-        <span>Book Now</span>
-      </a>
     </nav>
   );
 }

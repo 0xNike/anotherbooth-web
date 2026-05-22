@@ -6,12 +6,15 @@
 export const BRAND = {
   name: "Another Booth",
   katakana: "アナザーブース",
-  location: "Orchard Plaza #05-50",
+  location: "Orchard Plaza · Level 5 · #05-50",
   address: "150 Orchard Road, Singapore",
   hours: "10AM–3AM daily",
   capacity: "2–4 guests per session",
-  tagline: "Singapore's Underground Photobooth Experience",
-  bookingUrl: "#book", // TODO: external booking URL (TBD)
+  tagline: "Singapore's Immersive Photobooth Experience",
+  // No online booking — the venue is walk-in. Instagram is the only CTA.
+  instagramUrl: "#", // TODO: real Instagram profile URL (TBD)
+  mapsUrl:
+    "https://www.google.com/maps/search/?api=1&query=Orchard+Plaza+150+Orchard+Road+Singapore",
 } as const;
 
 /** Site-level metadata. `url` is the canonical origin — TODO: confirm the
@@ -19,9 +22,9 @@ export const BRAND = {
 export const SITE = {
   url: "https://anotherbooth.sg",
   title:
-    "Another Booth — アナザーブース | Singapore's Underground Photobooth Experience",
+    "Another Booth — アナザーブース | Singapore's Immersive Photobooth Experience",
   description:
-    "Four themed rooms. One continuous photobooth journey. Book your session at Orchard Plaza, Singapore.",
+    "Four themed rooms. One continuous photobooth journey. Find us on Level 5 of Orchard Plaza, Singapore — walk in any time.",
 } as const;
 
 /** Design palette. Authoritative copy lives in `globals.css` `@theme`;
@@ -33,8 +36,6 @@ export const COLORS = {
   chrome4: "#4a4a4a",
   black: "#0a0a0a",
   deepBlack: "#050505",
-  amber: "#d4a04a",
-  amberDim: "#a07830",
   white: "#f0f0f0",
 } as const;
 
@@ -105,7 +106,7 @@ export const STEPS: Step[] = [
   {
     number: "01",
     title: "Arrive",
-    text: "Book your slot. Show up at Orchard Plaza. Drop your bags in the vanity room.",
+    text: "No booking needed. Walk in at Orchard Plaza, Level 5. Drop your bags in the vanity room.",
   },
   {
     number: "02",
@@ -136,13 +137,13 @@ export const STATS: Stat[] = [
 ];
 
 export const NAV_LINKS = [
-  { label: "Rooms", href: "#rooms" },
-  { label: "Experience", href: "#experience" },
-  { label: "Location", href: "#book" },
+  { label: "About", href: "/about" },
+  { label: "Experience", href: "/#experience" }, // flow section on home
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const SOCIAL_LINKS = [
-  { label: "Instagram", href: "#" }, // TODO: real profile URL
+  { label: "Instagram", href: BRAND.instagramUrl }, // shares the CTA URL
   { label: "TikTok", href: "#" }, // TODO: real profile URL
   { label: "X", href: "#" }, // TODO: real profile URL
 ] as const;

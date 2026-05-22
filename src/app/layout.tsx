@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import { Outfit, Space_Mono, Noto_Sans_JP } from "next/font/google";
 import "@/styles/globals.css";
 import { BRAND, SITE } from "@/lib/constants";
+import CursorGlow from "@/components/CursorGlow";
+import Footer from "@/components/Footer";
+import GrainOverlay from "@/components/GrainOverlay";
+import LogoBar from "@/components/LogoBar";
+import ScrollReveal from "@/components/ScrollReveal";
 
 /* Brand typefaces, self-hosted at build time by next/font (no external
    request, no layout shift). Each exposes a CSS variable consumed by the
@@ -95,7 +100,6 @@ export default function RootLayout({
         {/* No-JS fallback: reveals start hidden for the scroll animation, so
             surface them when scripts are unavailable. */}
         <noscript>
-          {/* eslint-disable-next-line react/no-danger */}
           <style
             dangerouslySetInnerHTML={{
               __html: ".reveal{opacity:1;transform:none;}",
@@ -104,13 +108,26 @@ export default function RootLayout({
         </noscript>
         <script
           type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessSchema),
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+
+        {/* Global chrome — shared across all routes. */}
+        <GrainOverlay />
+        <CursorGlow />
+        <ScrollReveal />
+        <LogoBar />
+
+        {children}
+
+        <Footer />
+      </body>
     </html>
   );
 }

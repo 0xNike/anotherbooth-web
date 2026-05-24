@@ -88,9 +88,10 @@ The page has these sections in order:
 - No CTA button — the scroll cue invites entry; the only CTA is "Follow us on Instagram" in the final section
 - Scroll indicator at bottom
 
-### 3. Rooms Section ("01 — The Rooms")
-- Heading: "Four rooms. One story."
-- 4 room cards in a grid:
+### 3. Rooms Section
+- No visible heading (screen-reader-only h2 "The Rooms" for hierarchy)
+- A **full-screen GSAP Observer slider**: the section pins and each wheel/swipe advances one room (incoming room slides up, content staggers in), releasing to the next section at the ends. Reduced-motion / no-JS falls back to stacked, natively-scrolling full-screen panels.
+- The four rooms:
 
 | Card | Room Name | Kanji | Description |
 |---|---|---|---|
@@ -99,7 +100,7 @@ The page has these sections in order:
 | Room 03 | Batting Cage | 野球 | Chain-link fence, fake turf, jerseys, paparazzi flash |
 | Room 04 | Izakaya | 居酒屋 | Wooden table, fake noodles/bottles, warm amber glow |
 
-Each card has: atmospheric gradient background matching room vibe, ghost kanji (vertical, top-right, 3% opacity), hover-reveal description, amber room number label.
+Each room panel has: a per-room atmospheric gradient wash, a giant faint ghost kanji (vertical, top-right), and content pinned bottom-left (room number in the room's palette colour, name, description — always visible).
 
 ### 4. How It Works ("02 — The Flow")
 - 4 steps: Arrive → Shoot → Select → Print

@@ -91,7 +91,6 @@ body {
   color: var(--chrome-1);
   font-family: var(--font-display);
   overflow-x: hidden;
-  cursor: crosshair;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -570,6 +569,59 @@ nav {
   color: var(--chrome-2);
   line-height: 1.7;
   max-width: 46ch;
+}
+
+/* ─── Rooms slider (GSAP) ─────────────────────────────────────────────
+   Default = the stacked, natively-scrolling panels above (the fallback
+   when JS is off or reduced motion is set). When GSAP initialises it adds
+   `gsap-active`: the wrapper pins to one viewport and the slides overlay,
+   sliding up one at a time as you scroll/swipe. */
+.rooms-slider {
+  position: relative;
+}
+
+.rooms-slider.gsap-active {
+  height: 100svh;
+  overflow: hidden;
+}
+
+.rooms-slider.gsap-active .room-slide {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  will-change: transform;
+}
+
+/* Progress dots — only meaningful in the active (pinned) slider. */
+.room-progress {
+  display: none;
+}
+
+.rooms-slider.gsap-active .room-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: absolute;
+  right: clamp(16px, 3vw, 36px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  list-style: none;
+}
+
+.room-progress li {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  transition:
+    background 0.3s,
+    transform 0.3s;
+}
+
+.room-progress li.is-active {
+  background: var(--chrome-1);
+  transform: scale(1.35);
 }
 
 /* ─── How it works ────────────────────────────────────────────────── */

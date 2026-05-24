@@ -94,9 +94,9 @@ The page has these sections in order:
 
 | Card | Room Name | Kanji | Description |
 |---|---|---|---|
-| Room 01 | Graffiti Press | 新聞 | Japanese newspaper walls, markers, leave your mark |
-| Room 02 | Fridge POV | 冷蔵庫 | Camera inside glass-door fridge, noodle shelves, cool light |
-| Room 03 | Batting Cage | 野球 | Chain-link fence, fake grass, jerseys, paparazzi flash |
+| Room 01 | Sakura Room | 桜花 | Cherry blossom in permanent bloom, soft pink light, petals overhead |
+| Room 02 | Convenience Store | コンビニ | Late-night konbini — fluorescent light, packed shelves, drink chiller |
+| Room 03 | Batting Cage | 野球 | Chain-link fence, fake turf, jerseys, paparazzi flash |
 | Room 04 | Izakaya | 居酒屋 | Wooden table, fake noodles/bottles, warm amber glow |
 
 Each card has: atmospheric gradient background matching room vibe, ghost kanji (vertical, top-right, 3% opacity), hover-reveal description, amber room number label.
@@ -175,14 +175,14 @@ These will be provided later. Use placeholders for now:
 
 ## Room Reference (Physical Details)
 
-For context if you need to write copy or choose atmospheric treatments:
+For context if you need to write copy or choose atmospheric treatments. Note: decor themes were updated — R2 is now Sakura, R3 is now Convenience Store. Dimensions/camera positions are physical (unchanged); walls/camera/lighting for the re-themed rooms are TBD and should be re-confirmed.
 
 | Room | Dimensions (cm) | Theme | Walls | Camera | Lighting |
 |---|---|---|---|---|---|
 | R1 | 112×130 | Vanity / bags locker | — | — | Utility only, not a photobooth room |
-| R2 | 200×120 | Japanese newspaper graffiti | Newspaper-plastered (NOT black) | Corner, 8mm fisheye | Direct flash + dim 6500K cool LED |
-| R3 | 218×148 | Fridge POV | Black | Inside fridge, 24mm | Cool 5500K LED |
-| R4 | 218×148 | Baseball court | Black | Corner, fisheye | Flash + cool 6500K ambient |
+| R2 | 200×120 | Sakura Room (cherry blossom) | TBD | TBD | TBD — soft pink (re-themed) |
+| R3 | 218×148 | Convenience Store (konbini) | TBD | TBD | TBD — bright fluorescent (re-themed) |
+| R4 | 218×148 | Batting cage | Black | Corner, fisheye | Flash + cool 6500K ambient |
 | R5 | 200×145 | Izakaya | Black | Corner, chest-height 100cm | Warm 2700K amber + ring light |
 
 ---

@@ -440,160 +440,136 @@ nav {
   background-clip: text;
 }
 
-/* ─── Room cards ──────────────────────────────────────────────────── */
-.rooms-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2px;
-  margin-top: 60px;
-}
-
-.room-card {
+/* ─── Rooms — full-screen stacked panels ─────────────────────────────
+   One room per screen: each panel fills the viewport with content pinned
+   to the bottom-left over a per-room atmospheric wash + a giant ghost
+   kanji. No hover reveal — content is always shown. */
+.room-panel {
   position: relative;
-  aspect-ratio: 3 / 4;
+  min-height: 100svh;
   overflow: hidden;
+  display: flex;
+  align-items: flex-end;
   background: var(--black);
-  cursor: pointer;
 }
 
-.room-card-bg {
+.room-panel-bg {
   position: absolute;
   inset: 0;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.room-card:hover .room-card-bg {
-  transform: scale(1.05);
-}
-
-/* Room 01 — Graffiti Press: red, with newspaper-column rules. */
-.room-card:nth-child(1) .room-card-bg {
+/* Room 01 — Sakura Room: soft pink blossom bloom over a warm base. */
+.room-panel:nth-child(1) .room-panel-bg {
   background: linear-gradient(
       180deg,
-      rgba(238, 92, 77, 0.22) 0%,
-      rgba(10, 10, 10, 0.95) 100%
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 20px,
-      rgba(255, 255, 255, 0.02) 20px,
-      rgba(255, 255, 255, 0.02) 21px
-    );
-}
-
-/* Room 02 — Fridge POV: cool blue glow. */
-.room-card:nth-child(2) .room-card-bg {
-  background: linear-gradient(
-      180deg,
-      rgba(0, 166, 228, 0.22) 0%,
-      rgba(10, 10, 10, 0.95) 100%
+      rgba(238, 92, 77, 0.18) 0%,
+      rgba(10, 10, 10, 0.96) 100%
     ),
     radial-gradient(
-      circle at 50% 30%,
-      rgba(0, 166, 228, 0.12),
+      circle at 50% 24%,
+      rgba(255, 183, 197, 0.16),
       transparent 60%
     );
 }
 
+/* Room 02 — Convenience Store: bright cool fluorescent glare. */
+.room-panel:nth-child(2) .room-panel-bg {
+  background: linear-gradient(
+      180deg,
+      rgba(0, 166, 228, 0.2) 0%,
+      rgba(10, 10, 10, 0.96) 100%
+    ),
+    radial-gradient(
+      circle at 50% 18%,
+      rgba(190, 235, 255, 0.16),
+      transparent 55%
+    );
+}
+
 /* Room 03 — Batting Cage: green turf. */
-.room-card:nth-child(3) .room-card-bg {
+.room-panel:nth-child(3) .room-panel-bg {
   background: linear-gradient(
       180deg,
       rgba(108, 193, 125, 0.22) 0%,
-      rgba(10, 10, 10, 0.95) 100%
+      rgba(10, 10, 10, 0.96) 100%
     ),
     linear-gradient(45deg, rgba(108, 193, 125, 0.08) 0%, transparent 50%);
 }
 
-/* Room 04 — Izakaya: warm orange. */
-.room-card:nth-child(4) .room-card-bg {
+/* Room 04 — Izakaya: warm amber. */
+.room-panel:nth-child(4) .room-panel-bg {
   background: linear-gradient(
       180deg,
       rgba(234, 136, 30, 0.22) 0%,
-      rgba(10, 10, 10, 0.95) 100%
+      rgba(10, 10, 10, 0.96) 100%
     ),
     radial-gradient(
-      circle at 50% 60%,
+      circle at 50% 62%,
       rgba(234, 136, 30, 0.14),
       transparent 60%
     );
 }
 
-.room-card-content {
+.room-jp {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 32px;
-  background: linear-gradient(
-    to top,
-    rgba(5, 5, 5, 0.95) 0%,
-    transparent 100%
-  );
-  transform: translateY(40px);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  top: clamp(40px, 8vh, 96px);
+  right: clamp(16px, 5vw, 80px);
+  font-family: var(--font-jp);
+  /* Capped so multi-character labels (コンビニ, 居酒屋) don't run off the
+     panel; mobile shrinks it further below. */
+  font-size: clamp(96px, 18vh, 200px);
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.035);
+  writing-mode: vertical-rl;
+  line-height: 1;
+  pointer-events: none;
 }
 
-.room-card:hover .room-card-content,
-.room-card:focus-within .room-card-content {
-  transform: translateY(0);
+.room-panel-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 820px;
+  padding: 0 clamp(20px, 5vw, 64px) clamp(56px, 11vh, 120px);
 }
 
 .room-number {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 4px;
   color: var(--accent);
-  margin-bottom: 8px;
+  margin-bottom: 14px;
 }
 
 /* Each room owns one palette colour (matched to its atmosphere). */
-.room-card:nth-child(1) .room-number {
+.room-panel:nth-child(1) .room-number {
   color: var(--red);
 }
-.room-card:nth-child(2) .room-number {
+.room-panel:nth-child(2) .room-number {
   color: var(--blue);
 }
-.room-card:nth-child(3) .room-number {
+.room-panel:nth-child(3) .room-number {
   color: var(--green);
 }
-.room-card:nth-child(4) .room-number {
+.room-panel:nth-child(4) .room-number {
   color: var(--orange);
 }
 
 .room-name {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 24px;
-  letter-spacing: -0.5px;
-  margin-bottom: 8px;
+  font-size: clamp(34px, 6vw, 92px);
+  letter-spacing: -2px;
+  line-height: 1.02;
+  margin-bottom: 20px;
   color: var(--chrome-1);
 }
 
 .room-desc {
-  font-size: 13px;
-  color: var(--chrome-3);
-  line-height: 1.6;
-  opacity: 0;
-  transition: opacity 0.4s 0.2s;
-}
-
-.room-card:hover .room-desc,
-.room-card:focus-within .room-desc {
-  opacity: 1;
-}
-
-.room-jp {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  font-family: var(--font-jp);
-  font-size: 48px;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.03);
-  writing-mode: vertical-rl;
-  line-height: 1;
+  font-size: clamp(15px, 1.8vw, 19px);
+  color: var(--chrome-2);
+  line-height: 1.7;
+  max-width: 46ch;
 }
 
 /* ─── How it works ────────────────────────────────────────────────── */
@@ -886,11 +862,21 @@ footer {
   .section {
     padding: 80px 20px;
   }
-  .rooms-grid {
-    grid-template-columns: 1fr 1fr;
-  }
   .steps {
     grid-template-columns: 1fr 1fr;
+  }
+  /* Full-screen room panels: shrink the ghost kanji so multi-char labels
+     don't dominate / overflow a phone, and ease the content padding. */
+  .room-jp {
+    font-size: clamp(64px, 13vh, 120px);
+    top: clamp(20px, 4vh, 44px);
+    right: 10px;
+  }
+  .room-name {
+    font-size: clamp(32px, 9vw, 52px);
+  }
+  .room-panel-content {
+    padding-bottom: clamp(44px, 8vh, 80px);
   }
   .stats-banner {
     flex-wrap: wrap;
@@ -935,29 +921,15 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .rooms-grid {
-    grid-template-columns: 1fr;
-  }
   .steps {
     grid-template-columns: 1fr;
   }
 }
 
 /* ─── Touch / no-hover devices ─────────────────────────────────────────
-   The room cards reveal their name + description on :hover, and tap-to-
-   focus (:focus-within) is non-obvious — so on phones the cards read as
-   bare colour fields with the copy slid off the bottom edge. Where the
-   device can't hover, surface every card's content and description by
-   default. (Wired up to hover, not width, so a touchscreen laptop counts.) */
+   A tap leaves :hover stuck on the CTA pill until the next tap; don't let
+   it hang in the lifted state. */
 @media (hover: none) {
-  .room-card-content {
-    transform: none;
-  }
-  .room-desc {
-    opacity: 1;
-  }
-  /* A tap leaves :hover stuck on the pill until the next tap; don't let it
-     hang in the lifted state. */
   .cta-main:hover {
     transform: none;
   }
@@ -983,10 +955,6 @@ footer {
   .reveal {
     opacity: 1;
     transform: none;
-  }
-
-  .room-desc {
-    opacity: 1;
   }
 
   .chrome-line,

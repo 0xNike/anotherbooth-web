@@ -2,8 +2,8 @@ import { ROOMS } from "@/lib/constants";
 
 export default function Rooms() {
   return (
-    <section className="section" id="rooms" aria-labelledby="rooms-title">
-      <div className="reveal">
+    <section id="rooms" aria-labelledby="rooms-title">
+      <div className="section reveal">
         <p className="section-label">01 — The Rooms</p>
         <h2 className="section-title" id="rooms-title">
           Four rooms.
@@ -12,14 +12,15 @@ export default function Rooms() {
         </h2>
       </div>
 
-      <div className="rooms-grid">
+      {/* Each room is its own full-viewport panel, stacked vertically. */}
+      <div className="room-panels">
         {ROOMS.map((room) => (
-          <article className="room-card reveal" key={room.number} tabIndex={0}>
-            <div className="room-card-bg" aria-hidden="true" />
+          <article className="room-panel" key={room.number}>
+            <div className="room-panel-bg" aria-hidden="true" />
             <span className="room-jp" aria-hidden="true" lang="ja">
               {room.kanji}
             </span>
-            <div className="room-card-content">
+            <div className="room-panel-content reveal">
               <p className="room-number">{room.number}</p>
               <h3 className="room-name">{room.name}</h3>
               <p className="room-desc">{room.description}</p>

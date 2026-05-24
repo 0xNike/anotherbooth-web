@@ -68,17 +68,17 @@ export type Room = {
 export const ROOMS: Room[] = [
   {
     number: "Room 01",
-    name: "Graffiti Press",
-    kanji: "新聞",
+    name: "Sakura Room",
+    kanji: "桜花",
     description:
-      "Japanese newspaper walls. Markers in hand. Leave your mark — raw, unfiltered, yours.",
+      "A wall of cherry blossom in permanent bloom. Soft pink light, petals overhead — Tokyo in spring, any night of the year.",
   },
   {
     number: "Room 02",
-    name: "Fridge POV",
-    kanji: "冷蔵庫",
+    name: "Convenience Store",
+    kanji: "コンビニ",
     description:
-      "The camera's inside the fridge. You're the late-night snack run. Cool light, glass door, noodle shelves.",
+      "The 2AM konbini run. Cold fluorescent light, shelves of snacks and drinks, the hum of the chiller — mundane, and somehow iconic.",
   },
   {
     number: "Room 03",

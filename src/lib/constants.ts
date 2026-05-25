@@ -10,7 +10,8 @@ export const BRAND = {
   address: "150 Orchard Road, Singapore",
   hours: "10AM–3AM daily",
   capacity: "2–4 guests per session",
-  tagline: "Singapore's Immersive Photobooth Experience",
+  tagline: "Singapore's first walk-through photobooth.",
+  heroSub: "Four themed rooms, one continuous take — walk out with the strip.",
   // No online booking — the venue is walk-in. Instagram is the only CTA.
   instagramUrl: "#", // TODO: real Instagram profile URL (TBD)
   mapsUrl:
@@ -22,9 +23,9 @@ export const BRAND = {
 export const SITE = {
   url: "https://anotherbooth.sg",
   title:
-    "Another Booth — アナザーブース | Singapore's Immersive Photobooth Experience",
+    "Another Booth — アナザーブース | Singapore's First Walk-Through Photobooth",
   description:
-    "Four themed rooms. One continuous photobooth journey. Find us on Level 5 of Orchard Plaza, Singapore — walk in any time.",
+    "Singapore's first walk-through photobooth — four themed rooms, one continuous take. Walk out with the strip, on Level 5 of Orchard Plaza. Walk in any time.",
 } as const;
 
 /** Design palette. Authoritative copy lives in `globals.css` `@theme`;

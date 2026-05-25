@@ -83,8 +83,9 @@ The page has these sections in order:
 - The logo lives in a separate pinned bar above the hero; the menu band is links-only, centered, dark-grey (`--nav-bg`), and shared across all pages (it sits below the hero on home, at the top of sub-pages)
 
 ### 2. Hero
-- Tagline: "Singapore's Immersive Photobooth Experience"
-- Centerpiece: the official `anotherbooth` logo lockup (wordmark + アナザーブース), white-on-transparent SVG
+- Small katakana eyebrow (アナザーブース) — the logo itself lives in the pinned top bar
+- Headline (one-liner, the centerpiece): "Singapore's first walk-through photobooth." (big Outfit, chrome gradient)
+- Sub-line: "Four themed rooms, one continuous take — walk out with the strip."
 - No CTA button — the scroll cue invites entry; the only CTA is "Follow us on Instagram" in the final section
 - Scroll indicator at bottom
 
@@ -147,8 +148,8 @@ Choose the appropriate modern stack. Recommendations:
 
 ### SEO
 
-- Title: `Another Booth — アナザーブース | Singapore's Immersive Photobooth Experience`
-- Meta description: `Four themed rooms. One continuous photobooth journey. Find us on Level 5 of Orchard Plaza, Singapore — walk in any time.`
+- Title: `Another Booth — アナザーブース | Singapore's First Walk-Through Photobooth`
+- Meta description: `Singapore's first walk-through photobooth — four themed rooms, one continuous take. Walk out with the strip, on Level 5 of Orchard Plaza. Walk in any time.`
 - Open Graph image: TBD (will be provided — use a placeholder 1200×630 for now)
 - Canonical URL: TBD
 - Schema.org LocalBusiness structured data for the Orchard Plaza location
